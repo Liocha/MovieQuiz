@@ -4,6 +4,8 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet weak var noBtn: UIButton!
+    @IBOutlet weak var yesBtn: UIButton!
     
     private var currentQuestionIndex: Int = .zero
     private var correctAnswers: Int = .zero
@@ -83,6 +85,8 @@ final class MovieQuizViewController: UIViewController {
         if isCorrect {
             correctAnswers += 1
         }
+        yesBtn.isEnabled = false
+        noBtn.isEnabled = false
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -91,6 +95,8 @@ final class MovieQuizViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
             self.imageView.layer.borderWidth = 0
+            self.yesBtn.isEnabled = true
+            self.noBtn.isEnabled = true
         }
     }
     
