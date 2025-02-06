@@ -55,7 +55,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17V-ww-IMG" userLabel="Question Label">
-                                        <rect key="frame" x="0.0" y="624.5" width="341" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Рейтинг этого фильма меньше, чем 5?">
                                                 <attributes>
@@ -112,11 +112,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lvF-EG-aGU" secondAttribute="trailing" id="7xm-cq-Arx"/>
+                                    <constraint firstItem="17V-ww-IMG" firstAttribute="leading" secondItem="ZZ5-CS-Q4u" secondAttribute="leading" id="9EL-fq-ho2"/>
                                     <constraint firstItem="h76-lg-Wzg" firstAttribute="leading" secondItem="ZZ5-CS-Q4u" secondAttribute="leading" id="9hk-y9-b0n"/>
                                     <constraint firstAttribute="trailing" secondItem="h76-lg-Wzg" secondAttribute="trailing" id="Li6-8x-7t1"/>
+                                    <constraint firstItem="17V-ww-IMG" firstAttribute="top" secondItem="h76-lg-Wzg" secondAttribute="bottom" constant="20" id="Pw8-ZG-9Rk"/>
                                     <constraint firstItem="oOs-GW-Q0J" firstAttribute="leading" secondItem="ZZ5-CS-Q4u" secondAttribute="leading" id="XwV-lI-ywn"/>
                                     <constraint firstAttribute="trailing" secondItem="oOs-GW-Q0J" secondAttribute="trailing" id="fjz-Ub-yXI"/>
                                     <constraint firstItem="lvF-EG-aGU" firstAttribute="leading" secondItem="ZZ5-CS-Q4u" secondAttribute="leading" id="frI-wL-PBs"/>
+                                    <constraint firstItem="oOs-GW-Q0J" firstAttribute="top" secondItem="17V-ww-IMG" secondAttribute="bottom" constant="20" id="jOY-hq-O81"/>
+                                    <constraint firstAttribute="trailing" secondItem="17V-ww-IMG" secondAttribute="trailing" id="jcc-9o-oqp"/>
                                 </constraints>
                             </stackView>
                         </subviews>
