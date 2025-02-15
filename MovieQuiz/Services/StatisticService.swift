@@ -22,13 +22,8 @@ final class StatisticService {
 
 extension StatisticService: StatisticServiceProtocol {
     var totalGamesCount: Int {
-        get {
-            storage.integer(forKey: Keys.totalGamesCount.rawValue)
-        }
-
-        set(newValue) {
-            storage.set(newValue, forKey: Keys.totalGamesCount.rawValue)
-        }
+        get { storage.integer(forKey: Keys.totalGamesCount.rawValue) }
+        set { storage.set(newValue, forKey: Keys.totalGamesCount.rawValue) }
     }
 
     var bestGame: GameResult {
@@ -48,13 +43,8 @@ extension StatisticService: StatisticServiceProtocol {
     }
 
     var totalAccuracy: Double {
-        get {
-            storage.double(forKey: Keys.totalAccuracy.rawValue)
-        }
-
-        set(newValue) {
-            storage.set(newValue, forKey: Keys.totalAccuracy.rawValue)
-        }
+        get { storage.double(forKey: Keys.totalAccuracy.rawValue) }
+        set { storage.set(newValue, forKey: Keys.totalAccuracy.rawValue) }
     }
 
     func store(correct count: Int, total amount: Int) {

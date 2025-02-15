@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class AlertPresenter: ShowAlertProtocol {
+final class AlertPresenter: ShowAlertProtocol {
     weak var delegate: MovieQuizViewController?
 
     func showAlert(alertModel: AlertModel) {
@@ -16,7 +16,10 @@ class AlertPresenter: ShowAlertProtocol {
             preferredStyle: .alert
         )
 
-        let action = UIAlertAction(title: alertModel.buttonText, style: .default) { _ in
+        let action = UIAlertAction(
+            title: alertModel.buttonText,
+            style: .default
+        ) { _ in
             alertModel.completion()
         }
 

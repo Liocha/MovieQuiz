@@ -4,8 +4,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var noBtn: UIButton!
-    @IBOutlet private var yesBtn: UIButton!
+    @IBOutlet private var noButton: UIButton!
+    @IBOutlet private var yesButton: UIButton!
 
     private var currentQuestionIndex: Int = .zero
     private var correctAnswers: Int = .zero
@@ -34,9 +34,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - QuestionFactoryDelegate
 
     func didReciveNextQuestion(question: QuizQuestion?) {
-        guard let question = question else {
-            return
-        }
+        guard let question else { return }
 
         currentQuestion = question
         let viewModel = convert(model: question)
@@ -80,34 +78,39 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         if isCorrect {
             correctAnswers += 1
         }
-        yesBtn.isEnabled = false
-        noBtn.isEnabled = false
+        changeStateButton(isEnabled: false)
 
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.showNextQuestionOrResults()
             self.imageView.layer.borderWidth = 0
-            self.yesBtn.isEnabled = true
-            self.noBtn.isEnabled = true
+            self.yesButton.isEnabled = true
+            self.noButton.isEnabled = true
         }
+    }
+
+    private func changeStateButton(isEnabled: Bool) {
+        noButton.isEnabled = isEnabled
+        yesButton.isEnabled = isEnabled
     }
 
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             statisticService.store(correct: correctAnswers, total: questionsAmount)
-            var alertText: [String] = []
             let bestGame = statisticService.bestGame
-            alertText.append("Ваш результат \(correctAnswers)/\(questionsAmount)")
-            alertText.append("Количество сыграных квизов: \(statisticService.totalGamesCount)")
-            alertText.append("Рекорд: \(bestGame.correctAnswersCount)/\(bestGame.totalAnswersCount) (\(bestGame.date.dateTimeString))")
-            alertText.append("Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%")
+            let alertMessage = """
+                Ваш результат: \(correctAnswers)/\(questionsAmount)
+                Количество сыграных квизов: \(statisticService.totalGamesCount)
+                Рекорд: \(bestGame.correctAnswersCount)/\(bestGame.totalAnswersCount) (\(bestGame.date.dateTimeString))
+                Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%
+            """
             let result = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
-                text: alertText.joined(separator: "\n"),
+                text: alertMessage,
                 buttonText: "Сыграть еще раз"
             )
             show(quiz: result)
